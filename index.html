@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Film Finder</title>
+  </head>
+  <body>
+    <h1 id="title">Film Finder</h1>
+    <div id="qr-reader"></div>
+    <div id="inputs">
+    <input class="button" type="text" id="productInput" placeholder="Barcode eingeben" />
+    <button class="button" id="suchButton" onclick="searchProduct()">Suche</button>
+    </div>
+    <div id="results"></div>
+    <div id="result"></div>
+    <div id="loader" class="loader" style="display:none"></div>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <script src="script.js"></script>
+  </body>
+</html>
