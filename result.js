@@ -153,24 +153,70 @@ async function empfehlungengenrieren(info) {
 
         try {
             const resultDiv = document.getElementById("result");
-            const response = await fetch(`https://www.omdbapi.com/?t=${movie}&plot=full&apikey=d2c54f11`);
-            const data = await response.json();
-            const movieImageUrl = data.Poster || "";
-            const img = new Image();s
+            const omdbResponse = await fetch(`https://www.omdbapi.com/?t=${movie}&plot=full&apikey=d2c54f11`);
+            const omdbData = await omdbResponse.json();
+    
+            if (!omdbResponse.ok) {
+                throw new Error(`OMDb API error: ${omdbData.Error}`);
+            }
+    
+            const movieImageUrl = omdbData.Poster || "";
+            const img = new Image();
             img.src = movieImageUrl;
-            img.alt = data.Title;
-
-            img.onload = () => {
-                resultDiv.innerHTML += `
-                    <div class="result">
-                        <h4>${data.Title}</h4>
-                        <img src="${img.src}" alt="${img.alt}" />
-                        <p>Released: ${data.Released}</p>
-                    </div>
-                `;
+            img.alt = omdbData.Title;
+    
+            const streamingUrl = `https://streaming-availability.p.rapidapi.com/shows/${omdbData.imdbID}?series_granularity=show`;
+            const streamingOptions = {
+                method: 'GET',
+                headers: {
+                    'x-rapidapi-host': 'streaming-availability.p.rapidapi.com',
+                    'x-rapidapi-key': 'b14989e7e3mshee573bc0909e98dp1c06cdjsn54766e9f0646'
+                }
             };
+    
+            const streamingResponse = await fetch(streamingUrl, streamingOptions);
+            const streamingData = await streamingResponse.json();
+    
+            if (!streamingResponse.ok) {
+                throw new Error(`Streaming API error: ${streamingData.message}`);
+            }
+            console.log(streamingData.streamingOptions.de);
+            const streamingOptionsArray = streamingData.streamingOptions.de || [];
+            const seenServiceNames = new Set();
+            const streamingOptionsString = streamingOptionsArray
+                .filter(option => {
+                    const serviceName = option.service.name;
+                    if (!seenServiceNames.has(serviceName)) {
+                        seenServiceNames.add(serviceName);
+                        return true;
+                    }
+                    return false;
+                })
+                .map(option => {
+                    const service = option.service;
+                    return `<a href="${option.link}" target="_blank">${service.name}</a>`;
+                })
+                .join(", ");
+    
+            console.log(streamingOptionsString);
+            resultDiv.innerHTML += `
+                <div class="result">
+                    <h4>${omdbData.Title}</h4>
+                    <img src="${img.src}" alt="${img.alt}" />
+                    <p><strong>Released:</strong> ${omdbData.Released}</p>
+                    <p><strong>Runtime:</strong> ${omdbData.Runtime}</p>
+                    <p><strong>Genre:</strong> ${omdbData.Genre}</p>
+                    <p><strong>Director:</strong> ${omdbData.Director}</p>
+                    <p><strong>Writer:</strong> ${omdbData.Writer}</p>
+                    <p><strong>Actors:</strong> ${omdbData.Actors}</p>
+                    <p><strong>Rating:</strong> ${omdbData.imdbRating}</p>
+                    <p><strong>Streaming Options:</strong> ${streamingOptionsString}</p>
+                </div>
+            `;
 
-            img.onerror = () => { };
+        img.onerror = () => {
+            console.error('Image load error');
+        };
         } catch (error) {
             console.error(error);
         }
