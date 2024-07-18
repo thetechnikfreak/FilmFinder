@@ -152,7 +152,7 @@ async function empfehlungengenrieren(info) {
         console.log(movie);
 
         try {
-            const resultDiv = document.getElementById("result");
+            const alternativesDiv = document.getElementById("alternatives");
             const response = await fetch(`https://www.omdbapi.com/?t=${movie}&plot=full&apikey=d2c54f11`);
             const data = await response.json();
             const movieImageUrl = data.Poster || "";
@@ -161,7 +161,7 @@ async function empfehlungengenrieren(info) {
             img.alt = data.Title;
 
             img.onload = () => {
-                resultDiv.innerHTML += `
+                alternativesDiv.innerHTML += `
                     <div class="alternative">
                         <h4>${data.Title}</h4>
                         <img src="${img.src}" alt="${img.alt}" />
