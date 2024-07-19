@@ -1,4 +1,4 @@
-# ![Film Finder](logo.png)
+# ![Film Finder](https://raw.githubusercontent.com/thetechnikfreak/FilmFinder/main/logo.png)
 
 Welcome to Film Finder, your personalized movie recommendation web application! Film Finder leverages the power of AI and the extensive OMDb API to bring you movie suggestions tailored to your unique tastes. Discover your next favorite film effortlessly!
 
