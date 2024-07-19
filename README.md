@@ -52,5 +52,3 @@ Contributions to Film Finder are welcome! Please refer to the contributing guide
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-
-Explore Film Finder and find your next movie today! [Visit Film Finder](https://findfilms.technikfreak.co/)
