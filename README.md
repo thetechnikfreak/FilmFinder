@@ -1,3 +1,4 @@
+![Alt-Text](logo.png)
 # Film Finder
 
 Welcome to Film Finder, your personalized movie recommendation web application! Film Finder leverages the power of AI and the extensive OMDb API to bring you movie suggestions tailored to your unique tastes. Discover your next favorite film effortlessly!
