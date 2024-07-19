@@ -126,7 +126,7 @@ async function empfehlungengenrieren(info) {
         messages: [
             {
                 role: 'system',
-                content: 'You are an AI that will get information about a user and then you will select a movie for them. Only say the title, no sentence. Your response will be feed into an api so no sentence only the movie example : "Minions"'
+                content: 'You are an AI that will get information about a user and then you will select a movie for them. Only say the title, no sentence. Your response will be feed into an api so no sentence only the movie example : "Minions" '
             },
             {
                 role: 'user',
