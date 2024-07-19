@@ -1,28 +1,70 @@
-<html>
-    <head>
-        <title>Quiz Module</title>
-        <link rel="stylesheet" type="text/css" href="./styles.css" />
-        <link rel="icon" type="image/x-icon" href="favicon.ico">
-    </head>
-    <body>
-        <img src="logo.png" alt="Film Finder"> <br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Module</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --color-text: #f2f0f5;
+            --color-background: #050406;
+            --color-primary: #7a6798;
+            --color-secondary: #50354d;
+            --color-accent: #6d4a60;
+        }
+        body {
+            background-color: var(--color-background);
+            color: var(--color-text);
+        }
+        .question-card {
+            background-color: var(--color-secondary);
+            border-radius: 10px;
+            padding: 2rem;
+            width: 100%;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+        .submit {
+            background-color: var(--color-primary);
+            color: var(--color-text);
+        }
+        .submit:hover {
+            background-color: var(--color-accent);
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
+    <header class="mb-8">
+        <img src="logo.png" alt="Film Finder" class="w-32 h-32 mb-4">
+    </header>
 
-        <div class="app-body">
-            <div class="question-card">
-                <h2 id='question'>Question</h2>
-                <form>
-                    <input type="radio" id="op1" name="op" value="0">
-                    <label for="op1">op1</label><br>
-                    <input type="radio" id="op2" name="op" value="1">
-                    <label for="op2">op2</label><br>
-                    <input type="radio" id="op3" name="op" value="2">
-                    <label for="op3">op3</label><br>
-                    <input type="radio" id="op4" name="op" value="3">
-                    <label for="op4">op4</label><br>
-                    <input type="submit" name="submit" value = 'Submit' class = "submit"/>
-                </form>
-            </div>
+    <main class="w-full max-w-2xl bg-secondary p-8 rounded-lg shadow-lg text-center">
+        <div class="question-card mb-6">
+            <h2 id='question' class="text-2xl mb-4">Question</h2>
+            <form>
+                <div class="mb-4">
+                    <input type="radio" id="op1" name="op" value="0" class="mr-2">
+                    <label for="op1" class="text-lg">op1</label>
+                </div>
+                <div class="mb-4">
+                    <input type="radio" id="op2" name="op" value="1" class="mr-2">
+                    <label for="op2" class="text-lg">op2</label>
+                </div>
+                <div class="mb-4">
+                    <input type="radio" id="op3" name="op" value="2" class="mr-2">
+                    <label for="op3" class="text-lg">op3</label>
+                </div>
+                <div class="mb-4">
+                    <input type="radio" id="op4" name="op" value="3" class="mr-2">
+                    <label for="op4" class="text-lg">op4</label>
+                </div>
+                <input type="submit" name="submit" value='Submit' class="submit py-2 px-4 rounded-full cursor-pointer">
+            </form>
         </div>
-        <script src="./quiz.js"></script>
-    </body>
+    </main>
+
+    <script src="./quiz.js"></script>
+</body>
 </html>

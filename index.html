@@ -1,17 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Film Finder</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-  </head>
-  <body>
-    <img src="logo.png" alt="Film Finder"> <br>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Film Finder</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --color-text: #f2f0f5;
+      --color-background: #050406;
+      --color-primary: #7a6798;
+      --color-secondary: #50354d;
+      --color-accent: #6d4a60;
+    }
+    body {
+      background-color: var(--color-background);
+      color: var(--color-text);
+    }
+  </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
 
-    <button onclick="document.location.href = 'quiz.html'">Quiz</button>    
-    <button onclick="document.location.href = 'films.html'">Film</button>
-    <link rel="stylesheet" type="text/css" href="styles.css" />
-    <script src="script.js"></script>
-  </body>
+  <header class="mb-8">
+    <img src="logo.png" alt="Film Finder" class="w-64 mb-4">
+  </header>
+
+  <main class="text-center">
+    <button onclick="document.location.href = 'quiz.html'" class="bg-primary text-text py-2 px-4 rounded-full mb-4 hover:bg-secondary focus:outline-none">
+      Quiz
+    </button>    
+    <button onclick="document.location.href = 'films.html'" class="bg-primary text-text py-2 px-4 rounded-full mb-4 hover:bg-secondary focus:outline-none">
+      Film
+    </button>
+  </main>
+  <script src="script.js"></script>
+</body>
 </html>

@@ -1,20 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Film Finder</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-  </head>
-  <body>
-    <img src="logo.png" alt="Film Finder"> <br>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Film Finder</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --color-text: #f2f0f5;
+      --color-background: #050406;
+      --color-primary: #7a6798;
+      --color-secondary: #50354d;
+      --color-accent: #6d4a60;
+    }
+    body {
+      background-color: var(--color-background);
+      color: var(--color-text);
+    }
+    .form-container {
+      background-color: var(--color-secondary);
+      border-radius: 10px;
+      padding: 2rem;
+      width: 100%;
+      max-width: 600px;
+      margin: 2rem auto;
+    }
+    .form-input {
+      background-color: var(--color-background);
+      border: 1px solid var(--color-primary);
+      border-radius: 5px;
+      padding: 0.5rem;
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+    .form-input:focus {
+      border-color: var(--color-accent);
+      outline: none;
+    }
+    .submit-button {
+      background-color: var(--color-primary);
+      color: var(--color-text);
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+    .submit-button:hover {
+      background-color: var(--color-accent);
+    }
+  </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
+  <header class="mb-8">
+    <img src="logo.png" alt="Film Finder" class="w-64 mb-4">
+  </header>
 
+  <main class="form-container">
     <form action="/resultfilmes.html">
-      <label for="films">Filme die du magst (Mit Comma getrennt):</label><br>
-      <input type="text" id="films" name="films"><br><br>
-      <input type="submit" value="Submit">
+      <label for="films" class="block text-lg mb-2">Filme die du magst (Mit Comma getrennt):</label>
+      <input type="text" id="films" name="films" class="form-input">
+      <input type="submit" value="Submit" class="submit-button">
     </form> 
-    <link rel="stylesheet" type="text/css" href="styles.css" />
-
-  </body>
+  </main>
+</body>
 </html>
