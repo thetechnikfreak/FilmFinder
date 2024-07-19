@@ -7,12 +7,9 @@
   </head>
   <body>
     <h1 id="title">Film Finder</h1>
-    <form action="/resultfilmes.html">
-      <label for="films">Filme die du magst (Mit Comma getrennt):</label><br>
-      <input type="text" id="films" name="films"><br><br>
-      <input type="submit" value="Submit">
-    </form> 
+    <div id="result"></div>
+    <div id="loader" class="loader" style="display:none"></div>
     <link rel="stylesheet" type="text/css" href="styles.css" />
-
+    <script src="resultfilms.js"></script>
   </body>
 </html>
