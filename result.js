@@ -107,7 +107,7 @@ const decodeUserChoices = (answers) => {
 
 const urlParams = new URLSearchParams(window.location.search);
 const userAnswers = urlParams.get('result');
-const decodedAnswers = decodeUserChoices(userAnswers);
+const decodedAnswers = decodeUserChoices(userAnswers) || [];
 
 // Concatenate decoded answers into answerall string with newline separator
 decodedAnswers.forEach(answer => answerall += answer + '\n');
@@ -119,11 +119,11 @@ empfehlungengenrieren(answerall);
 async function empfehlungengenrieren(info) {
     const loaderDiv = document.getElementById("loader");
     loaderDiv.style.display = "block";
-    const apiKey = '1a7d81ead0074ffc9152a8d04c50628b';
-    const endpoint = 'https://aiforcause.deepnight.tech/openai/v1/chat/completions';
+    const apiKey = 'fresed-KU9B7cizg5ELIB9Cx4E5lqrJ2F3qkc';
+    const endpoint = 'https://fresedgpt.space/v1/chat/completions';
 
     const requestData = {
-        model: 'gpt-35-turbo',
+        model: 'gpt-3.5-turbo',
         messages: [
             {
                 role: 'system',
@@ -153,6 +153,7 @@ async function empfehlungengenrieren(info) {
         }
 
         const data = await response.json();
+        console.log(data);
         const movie = data.choices[0].message.content.trim();
         console.log(movie);
 
@@ -182,7 +183,7 @@ async function empfehlungengenrieren(info) {
                     method: 'GET',
                     headers: {
                         'x-rapidapi-host': 'streaming-availability.p.rapidapi.com',
-                        'x-rapidapi-key': '553e94f46fmsh8b51545d47a9c6fp145395jsn1c7aa34e031c'
+                        'x-rapidapi-key': '653e94f46fmsh8b51545d47a9c6fp145395jsn1c7aa34e031c'
                     }
                 };
 
@@ -216,6 +217,7 @@ async function empfehlungengenrieren(info) {
             } catch (error) {
                 console.error('Error fetching Streaming data:', error);
             }
+            
 
             resultDiv.innerHTML += `
             <div class="result-card bg-secondary text-text p-6 rounded-lg shadow-lg mb-6">

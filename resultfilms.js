@@ -4,8 +4,8 @@ empfehlungengenrieren(userAnswers)
 async function empfehlungengenrieren(info) {
     const loaderDiv = document.getElementById("loader");
     loaderDiv.style.display = "block";
-    const apiKey = '07a6c53364f74730881358baa5bed8a1';
-    const endpoint = 'https://api.aimlapi.com/chat/completions';
+    const apiKey = 'sk-pxNju75vKyXJVhjySvLCTdKxluNcijXvQDgFmpRRjZIWgAqe';
+    const endpoint = 'https://api.chatanywhere.tech/v1/chat/completions';
 
 
     const requestData = {
@@ -64,7 +64,7 @@ async function empfehlungengenrieren(info) {
                     method: 'GET',
                     headers: {
                         'x-rapidapi-host': 'streaming-availability.p.rapidapi.com',
-                        'x-rapidapi-key': '553e94f46fmsh8b51545d47a9c6fp145395jsn1c7aa34e031c'
+                        'x-rapidapi-key': '653e94f46fmsh8b51545d47a9c6fp145395jsn1c7aa34e031c'
                     }
                 };
 
