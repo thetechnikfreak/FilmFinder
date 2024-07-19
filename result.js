@@ -114,7 +114,8 @@ decodedAnswers.forEach(answer => answerall += answer + '\n');
 
 // Log accumulated answers
 console.log(answerall);
-empfehlungengenrieren(answerall)
+empfehlungengenrieren(answerall);
+
 async function empfehlungengenrieren(info) {
     const loaderDiv = document.getElementById("loader");
     loaderDiv.style.display = "block";
@@ -126,7 +127,7 @@ async function empfehlungengenrieren(info) {
         messages: [
             {
                 role: 'system',
-                content: 'You are an AI that will get information about a user and then you will select a movie for them. Only say the title, no sentence. Your response will be feed into an api so no sentence only the movie example : "Minions" '
+                content: 'You are an AI that will get information about a user and then you will select a movie for them. Only say the title, no sentence. Your response will be feed into an api so no sentence only the movie example: "Minions" '
             },
             {
                 role: 'user',
@@ -147,6 +148,10 @@ async function empfehlungengenrieren(info) {
             body: JSON.stringify(requestData)
         });
 
+        if (!response.ok) {
+            throw new Error(`API error: ${response.status} - ${response.statusText}`);
+        }
+
         const data = await response.json();
         const movie = data.choices[0].message.content.trim();
         console.log(movie);
@@ -154,51 +159,64 @@ async function empfehlungengenrieren(info) {
         try {
             const resultDiv = document.getElementById("result");
             const omdbResponse = await fetch(`https://www.omdbapi.com/?t=${movie}&plot=full&apikey=d2c54f11`);
-            const omdbData = await omdbResponse.json();
-    
+
             if (!omdbResponse.ok) {
+                throw new Error(`OMDb API error: ${omdbResponse.status} - ${omdbResponse.statusText}`);
+            }
+
+            const omdbData = await omdbResponse.json();
+            if (omdbData.Response === "False") {
                 throw new Error(`OMDb API error: ${omdbData.Error}`);
             }
-    
+
             const movieImageUrl = omdbData.Poster || "";
             const img = new Image();
             img.src = movieImageUrl;
             img.alt = omdbData.Title;
-    
-            const streamingUrl = `https://streaming-availability.p.rapidapi.com/shows/${omdbData.imdbID}?series_granularity=show`;
-            const streamingOptions = {
-                method: 'GET',
-                headers: {
-                    'x-rapidapi-host': 'streaming-availability.p.rapidapi.com',
-                    'x-rapidapi-key': 'b14989e7e3mshee573bc0909e98dp1c06cdjsn54766e9f0646'
-                }
-            };
-    
-            const streamingResponse = await fetch(streamingUrl, streamingOptions);
-            const streamingData = await streamingResponse.json();
-    
-            if (!streamingResponse.ok) {
-                throw new Error(`Streaming API error: ${streamingData.message}`);
-            }
-            console.log(streamingData.streamingOptions.de);
-            const streamingOptionsArray = streamingData.streamingOptions.de || [];
-            const seenServiceNames = new Set();
-            const streamingOptionsString = streamingOptionsArray
-                .filter(option => {
-                    const serviceName = option.service.name;
-                    if (!seenServiceNames.has(serviceName)) {
-                        seenServiceNames.add(serviceName);
-                        return true;
+
+            let streamingOptionsString = "Streaming options not available.";
+
+            try {
+                const streamingUrl = `https://streaming-availability.p.rapidapi.com/shows/${omdbData.imdbID}?series_granularity=show`;
+                const streamingOptions = {
+                    method: 'GET',
+                    headers: {
+                        'x-rapidapi-host': 'streaming-availability.p.rapidapi.com',
+                        'x-rapidapi-key': 'b14989e7e3mshee573bc0909e98dp1c06cdjsn54766e9f0646'
                     }
-                    return false;
-                })
-                .map(option => {
-                    const service = option.service;
-                    return `<a href="${option.link}" target="_blank">${service.name}</a>`;
-                })
-                .join(", ");
-    
-            console.log(streamingOptionsString);
+                };
+
+                const streamingResponse = await fetch(streamingUrl, streamingOptions);
+
+                if (!streamingResponse.ok) {
+                    throw new Error(`Streaming API error: ${streamingResponse.status} - ${streamingResponse.statusText}`);
+                }
+
+                const streamingData = await streamingResponse.json();
+                if (streamingData.message) {
+                    throw new Error(`Streaming API error: ${streamingData.message}`);
+                }
+
+                const streamingOptionsArray = streamingData.streamingOptions.de || [];
+                const seenServiceNames = new Set();
+                streamingOptionsString = streamingOptionsArray
+                    .filter(option => {
+                        const serviceName = option.service.name;
+                        if (!seenServiceNames.has(serviceName)) {
+                            seenServiceNames.add(serviceName);
+                            return true;
+                        }
+                        return false;
+                    })
+                    .map(option => {
+                        const service = option.service;
+                        return `<a href="${option.link}" target="_blank">${service.name}</a>`;
+                    })
+                    .join(", ");
+            } catch (error) {
+                console.error('Error fetching Streaming data:', error);
+            }
+
             resultDiv.innerHTML += `
             <div class="result-card bg-secondary text-text p-6 rounded-lg shadow-lg mb-6">
               <h4 class="text-xl font-semibold mb-4">${omdbData.Title}</h4>
@@ -214,15 +232,26 @@ async function empfehlungengenrieren(info) {
             </div>
           `;
 
-        img.onerror = () => {
-            console.error('Image load error');
-        };
+            img.onerror = () => {
+                console.error('Image load error');
+            };
         } catch (error) {
-            console.error(error);
+            console.error('Error fetching OMDb data:', error);
+            const resultDiv = document.getElementById("result");
+            resultDiv.innerHTML += `
+                <div class="result-card bg-secondary text-text p-6 rounded-lg shadow-lg mb-6">
+                  <p class="text-red-500">Failed to fetch movie recommendation. Please try again later.</p>
+                </div>
+            `;
         }
     } catch (error) {
-        console.error('Error fetching data:', error);
-        return null;
+        console.error('Error fetching recommendation:', error);
+        const resultDiv = document.getElementById("result");
+        resultDiv.innerHTML += `
+            <div class="result-card bg-secondary text-text p-6 rounded-lg shadow-lg mb-6">
+              <p class="text-red-500">Failed to fetch movie recommendation. Please try again later.</p>
+            </div>
+        `;
     }
     loaderDiv.style.display = "none";
 }
