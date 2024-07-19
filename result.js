@@ -119,11 +119,11 @@ empfehlungengenrieren(answerall);
 async function empfehlungengenrieren(info) {
     const loaderDiv = document.getElementById("loader");
     loaderDiv.style.display = "block";
-    const apiKey = '07a6c53364f74730881358baa5bed8a1';
-    const endpoint = 'https://api.aimlapi.com/chat/completions';
+    const apiKey = '1a7d81ead0074ffc9152a8d04c50628b';
+    const endpoint = 'https://aiforcause.deepnight.tech/openai/v1/chat/completions';
 
     const requestData = {
-        model: 'gpt-3.5-turbo',
+        model: 'gpt-35-turbo',
         messages: [
             {
                 role: 'system',
@@ -182,7 +182,7 @@ async function empfehlungengenrieren(info) {
                     method: 'GET',
                     headers: {
                         'x-rapidapi-host': 'streaming-availability.p.rapidapi.com',
-                        'x-rapidapi-key': 'b14989e7e3mshee573bc0909e98dp1c06cdjsn54766e9f0646'
+                        'x-rapidapi-key': '553e94f46fmsh8b51545d47a9c6fp145395jsn1c7aa34e031c'
                     }
                 };
 

@@ -9,7 +9,7 @@ async function empfehlungengenrieren(info) {
 
 
     const requestData = {
-        model: 'gpt-3.5-turbo',
+        model: 'mistralai/Mistral-7B-Instruct-v0.2',
         messages: [
             {
                 role: 'system',
@@ -64,7 +64,7 @@ async function empfehlungengenrieren(info) {
                     method: 'GET',
                     headers: {
                         'x-rapidapi-host': 'streaming-availability.p.rapidapi.com',
-                        'x-rapidapi-key': 'b14989e7e3mshee573bc0909e98dp1c06cdjsn54766e9f0646'
+                        'x-rapidapi-key': '553e94f46fmsh8b51545d47a9c6fp145395jsn1c7aa34e031c'
                     }
                 };
 
