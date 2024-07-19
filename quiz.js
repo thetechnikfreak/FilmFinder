@@ -153,23 +153,31 @@ function handleSubmit(e) {
 }
 function init() {
     document.body.innerHTML = `
-        <div class="app-body">
-            <div class="question-card">
-                <h2 id='question'>Question</h2>
-                <form>
-                    <input type="radio" id="op1" name="op" value="0">
-                    <label for="op1">op1</label><br>
-                    <input type="radio" id="op2" name="op" value="1">
-                    <label for="op2">op2</label><br>
-                    <input type="radio" id="op3" name="op" value="2">
-                    <label for="op3">op3</label><br>
-                    <input type="radio" id="op4" name="op" value="3">
-                    <label for="op4">op4</label><br>
-                    <input type="submit" name="submit" value = 'Submit' class = "submit"/>
-                </form>
-            </div>
-        </div>
-    `;
+    <div class="flex flex-col items-center justify-center min-h-screen p-4 bg-background text-text">
+      <div class="bg-secondary text-text p-6 rounded-lg shadow-lg w-full max-w-md">
+        <h2 id='question' class="text-2xl font-bold mb-6">Question</h2>
+        <form>
+          <div class="mb-4 flex items-center">
+            <input type="radio" id="op1" name="op" value="0" class="mr-2 accent-primary">
+            <label for="op1" class="text-lg">Option 1</label>
+          </div>
+          <div class="mb-4 flex items-center">
+            <input type="radio" id="op2" name="op" value="1" class="mr-2 accent-primary">
+            <label for="op2" class="text-lg">Option 2</label>
+          </div>
+          <div class="mb-4 flex items-center">
+            <input type="radio" id="op3" name="op" value="2" class="mr-2 accent-primary">
+            <label for="op3" class="text-lg">Option 3</label>
+          </div>
+          <div class="mb-4 flex items-center">
+            <input type="radio" id="op4" name="op" value="3" class="mr-2 accent-primary">
+            <label for="op4" class="text-lg">Option 4</label>
+          </div>
+          <input type="submit" name="submit" value='Submit' class="bg-primary text-text py-2 px-4 rounded-full cursor-pointer hover:bg-accent focus:outline-none">
+        </form>
+      </div>
+    </div>
+  `;
    question = document.querySelector('#question');
    form = document.querySelector('form');
    res = document.querySelector('#res');

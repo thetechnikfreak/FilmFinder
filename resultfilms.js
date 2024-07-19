@@ -86,19 +86,19 @@ async function empfehlungengenrieren(info) {
     
             console.log(streamingOptionsString);
             resultDiv.innerHTML += `
-                <div class="result">
-                    <h4>${omdbData.Title}</h4>
-                    <img src="${img.src}" alt="${img.alt}" />
-                    <p><strong>Released:</strong> ${omdbData.Released}</p>
-                    <p><strong>Runtime:</strong> ${omdbData.Runtime}</p>
-                    <p><strong>Genre:</strong> ${omdbData.Genre}</p>
-                    <p><strong>Director:</strong> ${omdbData.Director}</p>
-                    <p><strong>Writer:</strong> ${omdbData.Writer}</p>
-                    <p><strong>Actors:</strong> ${omdbData.Actors}</p>
-                    <p><strong>Rating:</strong> ${omdbData.imdbRating}</p>
-                    <p><strong>Streaming Options:</strong> ${streamingOptionsString}</p>
-                </div>
-            `;
+            <div class="result-card bg-secondary text-text p-6 rounded-lg shadow-lg mb-6">
+              <h4 class="text-xl font-semibold mb-4">${omdbData.Title}</h4>
+              <img src="${img.src}" alt="${img.alt}" class="w-full h-auto mb-4 rounded-md" />
+              <p class="mb-2"><strong>Released:</strong> ${omdbData.Released}</p>
+              <p class="mb-2"><strong>Runtime:</strong> ${omdbData.Runtime}</p>
+              <p class="mb-2"><strong>Genre:</strong> ${omdbData.Genre}</p>
+              <p class="mb-2"><strong>Director:</strong> ${omdbData.Director}</p>
+              <p class="mb-2"><strong>Writer:</strong> ${omdbData.Writer}</p>
+              <p class="mb-2"><strong>Actors:</strong> ${omdbData.Actors}</p>
+              <p class="mb-2"><strong>Rating:</strong> ${omdbData.imdbRating}</p>
+              <p class="mb-2"><strong>Streaming Options:</strong> ${streamingOptionsString}</p>
+            </div>
+          `;
 
         img.onerror = () => {
             console.error('Image load error');
