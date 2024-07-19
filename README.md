@@ -11,6 +11,10 @@ Explore Film Finder and find your next movie today! [Visit Film Finder](https://
 - **Detailed Movie Information**: Displays detailed information about the recommended movies, including director, writer, actors, and IMDb rating.
 - **Streaming Options**: Provides information on where the recommended movies can be streamed.
 
+## Design
+
+The design of Film Finder was created by jonashuberts. Check out their work on [GitHub](https://github.com/jonashuberts).
+
 ## How It Works
 
 1. **User Input**: The user inputs their favorite movies in the form provided on the `films.html` page.
