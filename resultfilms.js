@@ -4,8 +4,8 @@ empfehlungengenrieren(userAnswers)
 async function empfehlungengenrieren(info) {
     const loaderDiv = document.getElementById("loader");
     loaderDiv.style.display = "block";
-    const apiKey = 'sk-pxNju75vKyXJVhjySvLCTdKxluNcijXvQDgFmpRRjZIWgAqe';
-    const endpoint = 'https://api.chatanywhere.tech/v1/chat/completions';
+    const apiKey = 'fresed-KU9B7cizg5ELIB9Cx4E5lqrJ2F3qkc';
+    const endpoint = 'https://fresedgpt.space/v1/chat/completions';
 
 
     const requestData = {
