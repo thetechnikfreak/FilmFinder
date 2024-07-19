@@ -153,6 +153,9 @@ function handleSubmit(e) {
 }
 function init() {
     document.body.innerHTML = `
+     <header class="mb-8">
+        <img src="logo.png" alt="Film Finder" class="w-128 h-32 mb-4">
+    </header>
         <div class="app-body">
             <div class="question-card">
                 <h2 id='question'>Question</h2>
