@@ -153,36 +153,23 @@ function handleSubmit(e) {
 }
 function init() {
     document.body.innerHTML = `
-    <div class="flex flex-col items-center justify-center min-h-screen p-4 bg-background">
-      <header class="mb-8 text-center">
-        <img src="logo.png" alt="Film Finder" class="w-64 mb-4">
-      </header>
-      <div class="w-full max-w-lg bg-secondary p-6 rounded-lg shadow-lg text-text">
-        <h2 id='question' class="text-2xl font-bold mb-6">Question</h2>
-        <form class="space-y-4">
-          <div class="flex items-center p-2 bg-background rounded-lg border border-primary hover:border-accent transition-colors">
-            <input type="radio" id="op1" name="op" value="0" class="form-radio text-primary focus:ring-primary">
-            <label for="op1" class="ml-3 text-lg">op1</label>
-          </div>
-          <div class="flex items-center p-2 bg-background rounded-lg border border-primary hover:border-accent transition-colors">
-            <input type="radio" id="op2" name="op" value="1" class="form-radio text-primary focus:ring-primary">
-            <label for="op2" class="ml-3 text-lg">op2</label>
-          </div>
-          <div class="flex items-center p-2 bg-background rounded-lg border border-primary hover:border-accent transition-colors">
-            <input type="radio" id="op3" name="op" value="2" class="form-radio text-primary focus:ring-primary">
-            <label for="op3" class="ml-3 text-lg">op3</label>
-          </div>
-          <div class="flex items-center p-2 bg-background rounded-lg border border-primary hover:border-accent transition-colors">
-            <input type="radio" id="op4" name="op" value="3" class="form-radio text-primary focus:ring-primary">
-            <label for="op4" class="ml-3 text-lg">op4</label>
-          </div>
-          <button type="submit" class="mt-6 bg-primary text-text py-2 px-4 rounded-full hover:bg-accent focus:outline-none focus:ring-2 focus:ring-primary transition-colors">
-            Submit
-          </button>
-        </form>
-      </div>
-    </div>
-  `;
+        <div class="app-body">
+            <div class="question-card">
+                <h2 id='question'>Question</h2>
+                <form>
+                    <input type="radio" id="op1" name="op" value="0">
+                    <label for="op1">op1</label><br>
+                    <input type="radio" id="op2" name="op" value="1">
+                    <label for="op2">op2</label><br>
+                    <input type="radio" id="op3" name="op" value="2">
+                    <label for="op3">op3</label><br>
+                    <input type="radio" id="op4" name="op" value="3">
+                    <label for="op4">op4</label><br>
+                    <input type="submit" name="submit" value = 'Submit' class = "submit"/>
+                </form>
+            </div>
+        </div>
+    `;
    question = document.querySelector('#question');
    form = document.querySelector('form');
    res = document.querySelector('#res');
@@ -197,4 +184,3 @@ function init() {
    }); 
 }
 init();
-
