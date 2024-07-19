@@ -1,6 +1,8 @@
 # Film Finder
 
-Film Finder is a web application designed to recommend movies based on user preferences. It utilizes the OMDb API to fetch movie details and a custom AI model to generate recommendations.
+Welcome to Film Finder, your personalized movie recommendation web application! Film Finder leverages the power of AI and the extensive OMDb API to bring you movie suggestions tailored to your unique tastes. Discover your next favorite film effortlessly!
+
+Explore Film Finder and find your next movie today! [Visit Film Finder](https://findfilms.technikfreak.co/)
 
 ## Features
 
@@ -28,7 +30,7 @@ To run Film Finder locally, follow these steps:
 - HTML/CSS for the frontend.
 - JavaScript for the backend logic.
 - OMDb API for fetching movie details.
-- ChatGPT(Free Chatanywhere API) 3.5 is used for generating movie recommendations.
+- ChatGPT (Free Chatanywhere API) 3.5 for generating movie recommendations.
 
 ## Files Structure
 
@@ -46,3 +48,5 @@ Contributions to Film Finder are welcome! Please refer to the contributing guide
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+Explore Film Finder and find your next movie today! [Visit Film Finder](https://findfilms.technikfreak.co/)
