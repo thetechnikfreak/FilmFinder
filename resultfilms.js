@@ -4,8 +4,9 @@ empfehlungengenrieren(userAnswers)
 async function empfehlungengenrieren(info) {
     const loaderDiv = document.getElementById("loader");
     loaderDiv.style.display = "block";
-    const apiKey = 'sk-pxNju75vKyXJVhjySvLCTdKxluNcijXvQDgFmpRRjZIWgAqe';
-    const endpoint = 'https://api.chatanywhere.tech/v1/chat/completions';
+    const apiKey = '07a6c53364f74730881358baa5bed8a1';
+    const endpoint = 'https://api.aimlapi.com/chat/completions';
+
 
     const requestData = {
         model: 'gpt-3.5-turbo',
