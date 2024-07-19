@@ -27,14 +27,14 @@ The design of Film Finder was created by jonashuberts. Check out their work on [
 To run Film Finder locally, follow these steps:
 
 1. Clone the repository to your local machine.
-2. Open `films.html` in your browser to start the application.
+2. Open `index.html` in your browser to start the application.
 
 ## Technologies Used
 
 - HTML/CSS for the frontend.
 - JavaScript for the backend logic.
 - OMDb API for fetching movie details.
-- ChatGPT (Free Chatanywhere API) 3.5 for generating movie recommendations.
+- ChatGPT (Free fresedgpt API) 3.5 for generating movie recommendations.
 
 ## Files Structure
 
