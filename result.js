@@ -239,6 +239,24 @@ async function empfehlungengenrieren(info) {
             };
         } catch (error) {
             console.error('Error fetching OMDb data:', error);
+            if (retryCount < 3) {
+                console.log('Retrying OMDb API request...');
+                return empfehlungGenerieren(info, retryCount + 1);
+            } else {
+                const resultDiv = document.getElementById("result");
+                resultDiv.innerHTML += `
+                    <div class="result-card bg-secondary text-text p-6 rounded-lg shadow-lg mb-6">
+                      <p class="text-red-500">Failed to fetch movie recommendation. Please try again later.</p>
+                    </div>
+                `;
+            }
+        }
+    } catch (error) {
+        console.error('Error fetching recommendation:', error);
+        if (retryCount < 3) {
+            console.log('Retrying ChatGPT API request...');
+            return empfehlungGenerieren(info, retryCount + 1);
+        } else {
             const resultDiv = document.getElementById("result");
             resultDiv.innerHTML += `
                 <div class="result-card bg-secondary text-text p-6 rounded-lg shadow-lg mb-6">
@@ -246,14 +264,6 @@ async function empfehlungengenrieren(info) {
                 </div>
             `;
         }
-    } catch (error) {
-        console.error('Error fetching recommendation:', error);
-        const resultDiv = document.getElementById("result");
-        resultDiv.innerHTML += `
-            <div class="result-card bg-secondary text-text p-6 rounded-lg shadow-lg mb-6">
-              <p class="text-red-500">Failed to fetch movie recommendation. Please try again later.</p>
-            </div>
-        `;
     }
     loaderDiv.style.display = "none";
 }

@@ -4,8 +4,8 @@ empfehlungengenrieren(userAnswers)
 async function empfehlungengenrieren(info) {
     const loaderDiv = document.getElementById("loader");
     loaderDiv.style.display = "block";
-    const apiKey = 'sk-pxNju75vKyXJVhjySvLCTdKxluNcijXvQDgFmpRRjZIWgAqe';
-    const endpoint = 'https://api.chatanywhere.tech/v1/chat/completions';
+    const apiKey = 'fresed-KU9B7cizg5ELIB9Cx4E5lqrJ2F3qkc';
+    const endpoint = 'https://fresedgpt.space/v1/chat/completions';
 
 
     const requestData = {
@@ -119,6 +119,24 @@ async function empfehlungengenrieren(info) {
             };
         } catch (error) {
             console.error('Error fetching OMDb data:', error);
+            if (retryCount < 3) {
+                console.log('Retrying OMDb API request...');
+                return empfehlungGenerieren(info, retryCount + 1);
+            } else {
+                const resultDiv = document.getElementById("result");
+                resultDiv.innerHTML += `
+                    <div class="result-card bg-secondary text-text p-6 rounded-lg shadow-lg mb-6">
+                      <p class="text-red-500">Failed to fetch movie recommendation. Please try again later.</p>
+                    </div>
+                `;
+            }
+        }
+    } catch (error) {
+        console.error('Error fetching recommendation:', error);
+        if (retryCount < 3) {
+            console.log('Retrying ChatGPT API request...');
+            return empfehlungGenerieren(info, retryCount + 1);
+        } else {
             const resultDiv = document.getElementById("result");
             resultDiv.innerHTML += `
                 <div class="result-card bg-secondary text-text p-6 rounded-lg shadow-lg mb-6">
@@ -126,14 +144,6 @@ async function empfehlungengenrieren(info) {
                 </div>
             `;
         }
-    } catch (error) {
-        console.error('Error fetching recommendation:', error);
-        const resultDiv = document.getElementById("result");
-        resultDiv.innerHTML += `
-            <div class="result-card bg-secondary text-text p-6 rounded-lg shadow-lg mb-6">
-              <p class="text-red-500">Failed to fetch movie recommendation. Please try again later.</p>
-            </div>
-        `;
     }
     loaderDiv.style.display = "none";
 }
